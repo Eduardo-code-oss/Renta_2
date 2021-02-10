@@ -10,33 +10,6 @@
       serviceLog(regis);
     }
    
-               
-    
-   
-       
-        // alert(`email = ${email} y password ${pass}`)
-        
-    //    axios.get(`https://sh-javascript.herokuapp.com/api/user/login/${email}`).then(function (response) {
-    //     console.log('response');
-    //     console.log(response);
-    //     }).catch(function (error) {
-    //         console.log(error);
-    //     })
-
-    //     var settings = {
-    //         "url": `https://sh-javascript.herokuapp.com/api/user/login/${email}`,
-    //         "method": "GET",
-    //         "timeout": 0,
-    //       };
-          
-    //       $.ajax(settings).done(function (response) {
-    //         console.log(response);
-    //       });
-        
-
-       
-    
-    
         function registrar(){
             const user = {
                 name: document.getElementById("fullNameSrEmail").value,
@@ -58,33 +31,70 @@
             .post("https://sh-javascript.herokuapp.com/api/user/save", user)
             .then((res) => {
               console.log(res.data.name);
-              retorno = res.data;
+              if (res.request.status == 200) {
+                location.href = "http://localhost:3000/authentication-signin-cover.html";
+             }
+             retorno = res.data;
               return res;
             })
             .catch((error) => {
               console.log(error.response);
             });
-        
+
+            
           console.log(retorno, " guarde los datos");
         
-          localStorage.setItem("id", retorno._id);
-          var id = localStorage.getItem("id");
         }
         async function serviceLog(regis){
             await axios
             .post("https://sh-javascript.herokuapp.com/api/user/login/", regis)
             .then((res) => {
               console.log(res.data.name);
+             if (res.request.status == 200) {
+            //    location.href = "http://localhost:3000/tabla.html";
+             }
               retorno = res.data;
               return res;
+              
             })
             .catch((error) => {
-              console.log(error.response);
+                if (error.request.status == 404) {
+                    console.log(error.response);
+                }
+  
             });
         
+     
           console.log(retorno, "Datos encotrados");
+
               
-          localStorage.setItem("id", retorno._id);
-          var id = localStorage.getItem("id");
+        localStorage.setItem("id", retorno);
+            var id = localStorage.getItem("id");
          
         }
+
+
+        async function singin() {
+            const user = {
+              email: document.getElementById("signupSrEmail").value,
+              password: document.getElementById("signupSrPassword").value
+            }; //se crea la const user para guaradr los datos que vienen del html con el getElementById
+          
+            var retorno = ""; //variable que guarda los datos del res
+            await axios
+              .post("https://sh-javascript.herokuapp.com/api/user/login", user) //url de servicio post y la const del html
+              .then((res) => {
+                retorno = res.data;
+                if (res.request.status == 200) {
+                  location.href = "http://localhost:3000/options.html";
+                }
+                return res;
+              })
+              .catch((error) => {
+                if (error.request.status == 404) {
+                    window.alert("Correo/contraseña incorrecta");
+                }
+              });
+            localStorage.setItem("id", retorno);
+            var id = localStorage.getItem("id");
+          }

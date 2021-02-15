@@ -21,6 +21,16 @@ async function capturar(){
             serviceRegister(user);
       
       }
+<<<<<<< HEAD
+=======
+      
+      
+      // function serviceLogin(email, pass){
+      //     fetch("https://sh-javascript.herokuapp.com/api/user/findbyEmail/" + email)
+      //     .then (PromiseF => PromiseF.json())
+      //     .then(contenido => console.log('Content '+ contenido));
+      // }
+>>>>>>> 92a781b141844c6ea5f3c4f30d6c4f4463f769e2
       async function serviceRegister(user){
     //    alert("entro a funcion regis");
           await axios
@@ -29,10 +39,17 @@ async function capturar(){
             console.log(res.data.name);
            
             if (res.request.status == 200) {
+<<<<<<< HEAD
           location.href = "http://localhost:3000/authentication-signin-cover.html";
             //alert("sussesfull"); 
             }if (res.request.status == 422) {
               alert("usuario en uso");
+=======
+         //    location.href = "http://localhost:3000/authentication-signin-cover.html";
+            //alert("sussesfull"); 
+            }if (res.request.status == 422) {
+              alert("correo ya en uso");
+>>>>>>> 92a781b141844c6ea5f3c4f30d6c4f4463f769e2
             } 
             retorno = res.data;
             return res;
@@ -40,7 +57,11 @@ async function capturar(){
           .catch((error) => {
             console.log(error.response);
           });
+<<<<<<< HEAD
 
+=======
+      //  location.href = "";
+>>>>>>> 92a781b141844c6ea5f3c4f30d6c4f4463f769e2
           
         console.log(retorno, " guarde los datos");
       
@@ -53,12 +74,18 @@ async function capturar(){
           .then((res) => {
             console.log(res.data.name);
             if (res.request.status == 200) {
+<<<<<<< HEAD
               alert("sussesfull"); 
          //     location.href = "http://localhost:3000/tabla.html";
             }
             if (res.request.status == 404) {
             alert("usurio no encontrado");              
             }
+=======
+                 //       location.href = "http://localhost:3000/tabla.html";
+                        //alert("sussesfull"); 
+                        }
+>>>>>>> 92a781b141844c6ea5f3c4f30d6c4f4463f769e2
             retorno = res.data;
             return res;
           })
@@ -72,6 +99,7 @@ async function capturar(){
         localStorage.setItem("id_user", retorno[0]._id);
        
       }
+<<<<<<< HEAD
       async function datos_tabla(){
         //    alert("entro a funcion regis");
               await axios
@@ -93,3 +121,7 @@ async function capturar(){
           .catch(e => {
               // Capturamos los errores
           })
+=======
+
+      
+>>>>>>> 92a781b141844c6ea5f3c4f30d6c4f4463f769e2
